@@ -2246,6 +2246,7 @@ static int vdbeCommit(sqlite3 *db, Vdbe *p){
   ){
     for(i=0; rc==SQLITE_OK && i<db->nDb; i++){
       Btree *pBt = db->aDb[i].pBt;
+      sqlite3_sleep(10); // additional sleep here by SQLiteBugOfUnionAll
       if( pBt ){
         rc = sqlite3BtreeCommitPhaseOne(pBt, 0);
       }
