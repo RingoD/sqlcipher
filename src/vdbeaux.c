@@ -2530,6 +2530,7 @@ static int vdbeCommit(sqlite3 *db, Vdbe *p){
     */
     for(i=0; rc==SQLITE_OK && i<db->nDb; i++){
       Btree *pBt = db->aDb[i].pBt;
+      sqlite3_sleep(10); // Add sqlite3_sleep to make the bug more easy to reproduce
       if( pBt ){
         rc = sqlite3BtreeCommitPhaseTwo(pBt, 0);
       }
